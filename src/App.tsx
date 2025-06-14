@@ -52,7 +52,7 @@ const services = [
     description: 'Create beautiful, responsive websites that engage your audience and drive business growth.',
     icon: <WebIcon sx={{ fontSize: 40 }} />,
     color: '#2D3047',
-    image: 'https://images.unsplash.com/photo-1547658719-da2b51169166?w=800&auto=format&fit=crop&q=60'
+    image: 'https://images.unsplash.com/photo-1547658719943-2429e8be8625?w=800&auto=format&fit=crop&q=60'
   },
   {
     title: 'Mobile App Design',
@@ -104,39 +104,21 @@ function App() {
         elevation={0} 
         sx={{ 
           backdropFilter: 'blur(8px)',
-          borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
           background: 'rgba(45, 48, 71, 0.8)'
         }}
       >
         <Toolbar sx={{ justifyContent: 'space-between' }}>
-          <Typography 
-            variant="h6" 
-            component="div" 
-            sx={{ 
-              fontWeight: 600,
-              fontFamily: 'Playfair Display, serif',
-              fontSize: '1.5rem',
-              letterSpacing: '0.05em',
-              background: 'linear-gradient(45deg, #ffffff 30%, #E0A458 90%)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              animation: 'gradient 8s ease infinite',
-              backgroundSize: '200% 200%',
-              '@keyframes gradient': {
-                '0%': {
-                  backgroundPosition: '0% 50%'
-                },
-                '50%': {
-                  backgroundPosition: '100% 50%'
-                },
-                '100%': {
-                  backgroundPosition: '0% 50%'
-                }
-              }
+          <Box
+            component="img"
+            src="/src/assets/clear aestetics logo.png"
+            alt="Clear Aestetic Designs Logo"
+            sx={{
+              height: { xs: 40, md: 50 },
+              width: 'auto',
+              cursor: 'pointer',
+              filter: 'brightness(1.2) drop-shadow(0px 0px 8px rgba(224, 164, 88, 0.5))'
             }}
-          >
-            Clear Aestetic Designs
-          </Typography>
+          />
           
           {!isMobile && (
             <Box sx={{ display: 'flex', gap: 4 }}>
@@ -217,7 +199,7 @@ function App() {
         }}
       >
         <List sx={{ width: 250, pt: 2 }}>
-          <ListItem>
+          <ListItem onClick={() => { window.scrollTo({ top: 0, behavior: 'smooth' }); setIsMenuOpen(false); }}>
             <ListItemText 
               primary="Home" 
               sx={{ 
@@ -228,7 +210,11 @@ function App() {
               }} 
             />
           </ListItem>
-          <ListItem>
+          <ListItem onClick={() => { 
+            const servicesSection = document.getElementById('services');
+            servicesSection?.scrollIntoView({ behavior: 'smooth' });
+            setIsMenuOpen(false);
+          }}>
             <ListItemText 
               primary="Services" 
               sx={{ 
@@ -239,18 +225,11 @@ function App() {
               }} 
             />
           </ListItem>
-          <ListItem>
-            <ListItemText 
-              primary="Portfolio" 
-              sx={{ 
-                '& .MuiTypography-root': { 
-                  color: 'white',
-                  fontFamily: 'Playfair Display, serif'
-                }
-              }} 
-            />
-          </ListItem>
-          <ListItem>
+          <ListItem onClick={() => {
+            const contactSection = document.getElementById('contact');
+            contactSection?.scrollIntoView({ behavior: 'smooth' });
+            setIsMenuOpen(false);
+          }}>
             <ListItemText 
               primary="Contact" 
               sx={{ 
@@ -362,7 +341,7 @@ function App() {
             variant="h5" 
             align="center" 
             color="text.secondary" 
-            sx={{ mb: 6, maxWidth: '800px', mx: 'auto' }}
+            sx={{ mb: 6, maxWidth: '800px', mx: 'auto' }} 
           >
             We offer a comprehensive range of design services to help your space and brand stand out
           </Typography>
@@ -501,7 +480,7 @@ function App() {
                   }}
                 >
                   Email: clearaestetic@gmail.com<br />
-                  Phone: (555) 123-4567<br />
+                  Phone: +2519-68-68-21-86<br />
                   Address: Addis Ababa, Ethiopia
                 </Typography>
               </Box>
@@ -543,6 +522,8 @@ function App() {
                         transition: 'all 0.3s ease'
                       }
                     }}
+                    href="https://www.facebook.com/profile.php?id=61577089962988"
+                    target="_blank"
                   >
                     <FacebookIcon />
                   </IconButton>
