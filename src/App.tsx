@@ -3,7 +3,6 @@ import {
   AppBar, 
   Toolbar, 
   Typography, 
-  Button, 
   Container, 
   Box, 
   Card, 
@@ -20,7 +19,6 @@ import {
 } from '@mui/material'
 import { 
   Menu as MenuIcon, 
-  ArrowForward,
   Palette as DesignIcon,
   Architecture as ArchitectureIcon,
   Brush as BrushIcon,
@@ -104,19 +102,22 @@ function App() {
         position="fixed" 
         color="transparent" 
         elevation={0} 
-        sx={{ backdropFilter: 'blur(8px)' }}
+        sx={{ 
+          backdropFilter: 'blur(8px)',
+          borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
+          background: 'rgba(45, 48, 71, 0.8)'
+        }}
       >
-        <Toolbar>
+        <Toolbar sx={{ justifyContent: 'space-between' }}>
           <Typography 
             variant="h6" 
             component="div" 
             sx={{ 
-              flexGrow: 1, 
               fontWeight: 600,
               fontFamily: 'Playfair Display, serif',
               fontSize: '1.5rem',
               letterSpacing: '0.05em',
-              background: 'linear-gradient(45deg, #2D3047 30%, #E0A458 90%)',
+              background: 'linear-gradient(45deg, #ffffff 30%, #E0A458 90%)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               animation: 'gradient 8s ease infinite',
@@ -137,10 +138,64 @@ function App() {
             Clear Aestetic Designs
           </Typography>
           
+          {!isMobile && (
+            <Box sx={{ display: 'flex', gap: 4 }}>
+              <Typography 
+                variant="body1" 
+                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                sx={{ 
+                  color: 'white',
+                  cursor: 'pointer',
+                  '&:hover': {
+                    color: '#E0A458',
+                    transition: 'color 0.3s ease'
+                  }
+                }}
+              >
+                Home
+              </Typography>
+              <Typography 
+                variant="body1" 
+                onClick={() => {
+                  const servicesSection = document.getElementById('services');
+                  servicesSection?.scrollIntoView({ behavior: 'smooth' });
+                }}
+                sx={{ 
+                  color: 'white',
+                  cursor: 'pointer',
+                  '&:hover': {
+                    color: '#E0A458',
+                    transition: 'color 0.3s ease'
+                  }
+                }}
+              >
+                Services
+              </Typography>
+              <Typography 
+                variant="body1" 
+                onClick={() => {
+                  const contactSection = document.getElementById('contact');
+                  contactSection?.scrollIntoView({ behavior: 'smooth' });
+                }}
+                sx={{ 
+                  color: 'white',
+                  cursor: 'pointer',
+                  '&:hover': {
+                    color: '#E0A458',
+                    transition: 'color 0.3s ease'
+                  }
+                }}
+              >
+                Contact
+              </Typography>
+            </Box>
+          )}
+          
           {isMobile && (
             <IconButton
               color="inherit"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
+              sx={{ color: 'white' }}
             >
               <MenuIcon />
             </IconButton>
@@ -154,19 +209,57 @@ function App() {
         open={isMenuOpen}
         onClose={() => setIsMenuOpen(false)}
         ModalProps={{ keepMounted: true }}
+        PaperProps={{
+          sx: {
+            background: 'linear-gradient(135deg, #2D3047 0%, #1a1b2e 100%)',
+            color: 'white'
+          }
+        }}
       >
-        <List sx={{ width: 250 }}>
+        <List sx={{ width: 250, pt: 2 }}>
           <ListItem>
-            <ListItemText primary="Home" />
+            <ListItemText 
+              primary="Home" 
+              sx={{ 
+                '& .MuiTypography-root': { 
+                  color: 'white',
+                  fontFamily: 'Playfair Display, serif'
+                }
+              }} 
+            />
           </ListItem>
           <ListItem>
-            <ListItemText primary="Services" />
+            <ListItemText 
+              primary="Services" 
+              sx={{ 
+                '& .MuiTypography-root': { 
+                  color: 'white',
+                  fontFamily: 'Playfair Display, serif'
+                }
+              }} 
+            />
           </ListItem>
           <ListItem>
-            <ListItemText primary="Portfolio" />
+            <ListItemText 
+              primary="Portfolio" 
+              sx={{ 
+                '& .MuiTypography-root': { 
+                  color: 'white',
+                  fontFamily: 'Playfair Display, serif'
+                }
+              }} 
+            />
           </ListItem>
           <ListItem>
-            <ListItemText primary="Contact" />
+            <ListItemText 
+              primary="Contact" 
+              sx={{ 
+                '& .MuiTypography-root': { 
+                  color: 'white',
+                  fontFamily: 'Playfair Display, serif'
+                }
+              }} 
+            />
           </ListItem>
         </List>
       </Drawer>
@@ -222,25 +315,6 @@ function App() {
                     >
                       We create stunning interior designs that reflect your unique style and enhance your living experience.
                     </Typography>
-                    <Button 
-                      variant="contained" 
-                      size="large" 
-                      endIcon={<ArrowForward />}
-                      sx={{ 
-                        px: 4,
-                        py: 1.5,
-                        borderRadius: '30px',
-                        fontSize: '1.1rem',
-                        background: 'linear-gradient(45deg, #E0A458 30%, #f0b868 90%)',
-                        boxShadow: '0 4px 20px rgba(224, 164, 88, 0.3)',
-                        '&:hover': {
-                          background: 'linear-gradient(45deg, #f0b868 30%, #E0A458 90%)',
-                          boxShadow: '0 6px 25px rgba(224, 164, 88, 0.4)'
-                        }
-                      }}
-                    >
-                      Start Your Project
-                    </Button>
                   </Box>
                 </Fade>
               </Box>
@@ -268,7 +342,7 @@ function App() {
           </Container>
         </Box>
 
-        <Container maxWidth="lg" sx={{ py: { xs: 6, md: 10 } }}>
+        <Container maxWidth="lg" sx={{ py: { xs: 6, md: 10 } }} id="services">
           <Typography 
             variant="h2" 
             align="center" 
@@ -378,7 +452,7 @@ function App() {
             background: 'radial-gradient(circle at 50% 50%, rgba(224, 164, 88, 0.1) 0%, transparent 70%)',
             pointerEvents: 'none'
           }
-        }}>
+        }} id="contact">
           <Container>
             <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
               <Box sx={{ flex: { xs: '1 1 100%', md: '1 1 calc(33.333% - 32px)' } }}>
